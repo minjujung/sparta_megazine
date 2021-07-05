@@ -13,7 +13,7 @@ const Post = (props) => {
           </Grid>
           <Grid width="40%" is_flex>
             <Text size="14px">{insert_dt}</Text>
-            <Button width="45%" font_size="12px" padding="0px">
+            <Button width="45%" font_size="12px" padding="0">
               수정
             </Button>
           </Grid>

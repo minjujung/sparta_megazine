@@ -7,7 +7,6 @@ import { Grid, Title } from "../elements";
 const PostList = (props) => {
   return (
     <Grid>
-      <Title>게시글 목록</Title>
       <Post />
     </Grid>
   );

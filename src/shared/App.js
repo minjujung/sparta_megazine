@@ -1,19 +1,32 @@
 import styled from "styled-components";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { useEffect } from "react";
+
+import { history } from "../redux/configureStore";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import PostList from "../pages/PostList";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Header from "../components/Header";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userActions.loginCheckFB());
+  });
+
   return (
     <div className="App">
       <Container>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
+          <Header />
           <Route exact path="/" component={PostList} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-        </BrowserRouter>
+        </ConnectedRouter>
       </Container>
     </div>
   );

@@ -9,9 +9,8 @@ const Input = (props) => {
     <>
       {is_submit ? (
         <label>
-          <Text>{label}</Text>
+          <Text margin="5px 0">{label}</Text>
           <InputField
-            id="input_field"
             type={type}
             value={value}
             placeholder={placeholder}
@@ -27,7 +26,6 @@ const Input = (props) => {
         <label>
           <Text margin="5px 0">{label}</Text>
           <InputField
-            id="input_field"
             type={type}
             value={value}
             placeholder={placeholder}

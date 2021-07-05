@@ -30,17 +30,18 @@ const Button = (props) => {
 Button.defaultProps = {
   children: null,
   width: "100%",
-  bg: "#1B9CFC",
+  // bg: "#1B9CFC",
   margin: false,
   padding: false,
-  disabled: false,
+  _disabled: false,
   _onClick: () => {},
 };
 
 const Btn = styled.button`
+  cursor: pointer;
   box-sizing: border-box;
   width: ${(props) => props.width};
-  height: 40px;
+  height: 35px;
   background-color: ${(props) => (props.disabled ? "#1b9cfc8c" : "#1B9CFC")};
   border: none;
   border-radius: 3px;
