@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 나만의 메거진(like..Instagram..?) 완성
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🎈 구현해야 하는 기능
 
-## Available Scripts
+### 📰 게시글
 
-In the project directory, you can run:
+- [ ] 목록 파이어 스토어에서 가져오기
 
-### `yarn start`
+- [ ] 추가하고( + 이미지 업로드) 파이어 스토어에 저장
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ] 삭제하고 파이어 스토어 에서도 삭제
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 🧡 좋아요
 
-### `yarn test`
+- [ ] 게시글에 좋아요 하기
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ ] 게시글에 좋아요 취소하기
 
-### `yarn build`
+### ✅ 회원가입 하기
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] 이메일 형식 체크, 비밀번호 체크할 것
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ✅ 로그인 하기
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] 이메일, 패스워드 미기입 시 로그인 버튼 활성화 막을 것
 
-### `yarn eject`
+### 💻 메인 페이지
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [ ] 게시글 목록 노출
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [ ] 무한 스크롤
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [ ] 게시글 하나에 작성자, 작성시간, 이미지 미리보기, 텍스트 내용으로 구성
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [ ] 게시글 하나를 클릭 시, 게시글 상세 페이지로 이동
 
-## Learn More
+- [ ] 게시글 중 좋아요버튼(분홍색 하트 버튼)을 누르면 **`좋아요`를 +1** 한다. 다시 누르면 **분홍색 하트가 회색 하트가 되고 좋아요가 -1개** 된다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📝 글 작성 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [ ] 레이아웃 선택 버튼 (3가지 레이아웃 중 선택)
 
-### Code Splitting
+  1. 이미지가 오른편에, 텍스트는 왼편에 위치한 레이아웃
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  2. 이미지가 왼편에, 텍스트는 오른편에 위치한 레이아웃
 
-### Analyzing the Bundle Size
+  3. 텍스트가 위에, 이미지는 아래에 위치한 레이아웃
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [ ] 선택한 레이아웃으로 게시글 보이게 하기
 
-### Making a Progressive Web App
+- [ ] 텍스트, 이미지 중 입력 안된게 있으면 게시글 작성 버튼 비활성화
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [ ] 작성 완료 시 메인 페이지로 이동
 
-### Advanced Configuration
+### 📖 게시글 상세 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [ ] 게시글 레이아웃에 맞춰 이미지, 텍스트 위치 조절해서 노출
 
-### Deployment
+## 😮 추가로 해보면 좋을 기능(필수❌)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [ ] 이미지 여러장 업로드 (상세 페이지에서는 슬라이더로 이미지 넘겨가며 보도록 처리)
 
-### `yarn build` fails to minify
+- [ ] 알림 기능 만들기 (+알림페이지도 추가할 것!)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [ ] 좋아요 눌렀을 때 게시글 위로 하트 이미지가 나타났다 사라지게 해보기
+
+## 🎨 내가 더 하고 싶은 것
+
+- [ ] 회원가입시 기입할 때마다 조건에 맞는지 체크해주고 안내 메세지 띄우기
+
+- [ ] 완벽한 반응형과 스타일링...? 🎀
