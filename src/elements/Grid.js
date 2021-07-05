@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Grid = (props) => {
-  const { children, is_flex, width, padding, margin, bg } = props;
+  const { children, is_flex, width, padding, margin, bg, relative } = props;
 
   const styles = {
     is_flex,
@@ -10,6 +10,7 @@ const Grid = (props) => {
     margin,
     padding,
     bg,
+    relative,
   };
   return <GridContainer {...styles}>{children}</GridContainer>;
 };
@@ -21,12 +22,14 @@ Grid.defaultProps = {
   padding: false,
   margin: false,
   bg: false,
+  relative: false,
   _onClick: () => {},
 };
 
 const GridContainer = styled.div`
   width: ${(props) => props.width};
   height: 100%;
+
   box-sizing: border-box;
   ${(props) =>
     props.is_flex
@@ -35,5 +38,6 @@ const GridContainer = styled.div`
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.relative ? `position: relative;` : "")};
 `;
 export default Grid;

@@ -11,6 +11,7 @@ const Button = (props) => {
     font_size,
     _disabled,
     _onClick,
+    is_circle,
   } = props;
 
   const styles = {
@@ -20,6 +21,15 @@ const Button = (props) => {
     padding,
     font_size,
   };
+
+  if (is_circle) {
+    return (
+      <PlusBtn {...styles} onClick={_onClick}>
+        {children}
+      </PlusBtn>
+    );
+  }
+
   return (
     <Btn {...styles} disabled={_disabled} onClick={_onClick}>
       {children}
@@ -30,10 +40,10 @@ const Button = (props) => {
 Button.defaultProps = {
   children: null,
   width: "100%",
-  // bg: "#1B9CFC",
   margin: false,
   padding: false,
   _disabled: false,
+  is_circle: false,
   _onClick: () => {},
 };
 
@@ -45,6 +55,23 @@ const Btn = styled.button`
   background-color: ${(props) => (props.disabled ? "#1b9cfc8c" : "#1B9CFC")};
   border: none;
   border-radius: 3px;
+  color: white;
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  ${(props) => (props.font_size ? `font-size: ${props.font_size};` : "")};
+`;
+
+const PlusBtn = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: ${(props) => props.width};
+  height: 48px;
+  background-color: ${(props) => (props.disabled ? "#1b9cfc8c" : "#1B9CFC")};
+  border: none;
+  border-radius: 50%;
   color: white;
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
