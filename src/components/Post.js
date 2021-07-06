@@ -1,28 +1,39 @@
 import React from "react";
 import { Grid, Image, Text, Button } from "../elements";
 
+import { history } from "../redux/configureStore";
+
 const Post = (props) => {
-  const { user_info, image_url, contents, like_cnt, insert_dt } = props;
+  const { user_info, image_url, contents, like_cnt, insert_dt, id } = props;
   return (
     <>
       <Grid padding="16px">
         <Grid is_flex>
           <Grid width="30%" is_flex>
-            <Image shape="circle" size="40" src={image_url} />
+            <Image shape="circle" size="40" src={props.src} />
             <Text bold>{user_info.user_name}</Text>
           </Grid>
           <Grid width="40%" is_flex>
             <Text size="14px">{insert_dt}</Text>
-            <Button width="45%" font_size="12px" padding="0">
-              수정
-            </Button>
+            {props.is_me && (
+              <Button
+                width="45%"
+                font_size="12px"
+                padding="0"
+                _onClick={() => {
+                  history.push(`/write/${id}`);
+                }}
+              >
+                수정
+              </Button>
+            )}
           </Grid>
         </Grid>
         <Text margin="0">{contents}</Text>
       </Grid>
       <Image shape="big_square" src={image_url} />
       <Grid is_flex padding="5px">
-        <Text>좋아요 0개</Text>
+        <Text>좋아요 {like_cnt}개</Text>
         <Text>🤍</Text>
       </Grid>
     </>

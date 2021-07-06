@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text, Button } from "../elements";
+import { Text } from "../elements";
 
 const Input = (props) => {
   const {
@@ -11,8 +11,8 @@ const Input = (props) => {
     _onChange,
     is_submit,
     _onSubmit,
-    is_upload,
     textarea,
+    margin,
   } = props;
 
   if (is_submit) {
@@ -31,22 +31,6 @@ const Input = (props) => {
           }}
         />
       </label>
-    );
-  } else if (is_upload) {
-    return (
-      <>
-        <label htmlFor="file">
-          <Text>이미지 선택</Text>
-          <InputField
-            id="file"
-            type={type}
-            value={value}
-            placeholder={placeholder}
-            onChange={_onChange}
-            is_upload
-          />
-        </label>
-      </>
     );
   } else if (textarea) {
     return (
@@ -69,6 +53,7 @@ const Input = (props) => {
           value={value}
           placeholder={placeholder}
           onChange={_onChange}
+          style={{ margin }}
         />
       </label>
     );
@@ -84,16 +69,17 @@ Input.defaultProps = {
   is_upload: false,
   _onChange: () => {},
   _onSubmit: () => {},
+  margin: false,
 };
 
 const InputField = styled.input`
-  ${(props) => (props.is_upload ? `display: none;` : "")}
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
   border: 2px solid #25ccf7;
   border-radius: 3px;
-  margin-bottom: 20px;
+  ${(props) =>
+    props.margin ? `margin: ${props.margin};` : `margin-bottom: 20px;`}
   &:focus {
     outline: none;
     border: 2px solid #1b9cfc;

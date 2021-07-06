@@ -18,7 +18,7 @@ const Header = (props) => {
       <Grid is_flex padding="16px">
         <Text
           _onClick={() => {
-            history.push("/");
+            window.location.replace("/");
           }}
           is_click
         >
