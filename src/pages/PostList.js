@@ -16,9 +16,9 @@ const PostList = (props) => {
   const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
-    if (post_list.length < 2) {
-      dispatch(postActions.loadPostFB());
-    }
+    // if (post_list.length < 2) {
+    dispatch(postActions.loadPostFB());
+    // }
   }, []);
   return (
     <Grid relative>

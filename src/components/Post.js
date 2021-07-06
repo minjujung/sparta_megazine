@@ -4,7 +4,9 @@ import { Grid, Image, Text, Button } from "../elements";
 import { history } from "../redux/configureStore";
 
 const Post = (props) => {
-  const { user_info, image_url, contents, like_cnt, insert_dt, id } = props;
+  console.log(props);
+  const { user_info, image_url, contents, like_cnt, insert_dt, id, layout } =
+    props;
   return (
     <>
       <Grid padding="16px">
@@ -29,13 +31,30 @@ const Post = (props) => {
             )}
           </Grid>
         </Grid>
-        <Text margin="0">{contents}</Text>
       </Grid>
-      <Image shape="big_square" src={image_url} />
-      <Grid is_flex padding="5px">
-        <Text>좋아요 {like_cnt}개</Text>
-        <Text>🤍</Text>
-      </Grid>
+
+      {layout === "right" && (
+        <Grid is_flex>
+          <Text>{contents}</Text>
+          <Image half shape="big_square" src={image_url} />
+        </Grid>
+      )}
+      {layout === "left" && (
+        <Grid is_flex>
+          <Image half shape="big_square" src={image_url} />
+          <Text>{contents}</Text>
+        </Grid>
+      )}
+      {layout === "bottom" && (
+        <Grid>
+          <Text margin="0">{contents}</Text>
+          <Image shape="big_square" src={image_url} />
+          <Grid is_flex padding="5px">
+            <Text>좋아요 {like_cnt}개</Text>
+            <Text>🤍</Text>
+          </Grid>
+        </Grid>
+      )}
     </>
   );
 };

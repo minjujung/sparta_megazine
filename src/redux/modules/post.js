@@ -14,7 +14,7 @@ const DELETE_POST = "DELETE_POST";
 
 //action creators
 const loadPost = createAction(LOAD_POST, (post_list) => ({ post_list }));
-const addPost = createAction(ADD_POST, (post) => ({ post }));
+const addPost = createAction(ADD_POST, (post, layout) => ({ post, layout }));
 const updatePost = createAction(UPDATE_POST, (new_post, post_id) => ({
   new_post,
   post_id,
@@ -37,6 +37,7 @@ const initialPost = {
   contents: "안녕! 무민!",
   like_cnt: 0,
   insert_dt: "2021-06-30 10:00:00",
+  layout: "bottom",
 };
 
 //middleware
@@ -57,7 +58,9 @@ const loadPostFB = () => {
           contents: _post.contents,
           like_cnt: _post.like_cnt,
           insert_dt: _post.insert_dt,
+          layout: _post.layout,
         };
+        console.log(post);
         post_list.push(post);
       });
       dispatch(loadPost(post_list));
@@ -94,7 +97,7 @@ const loadOnePostFB = (id) => {
   };
 };
 
-const addPostFB = (contents = "") => {
+const addPostFB = (contents = "", layout = "bottom") => {
   return function (dispatch, getState, { history }) {
     const _user = getState().user.user;
 
@@ -106,6 +109,7 @@ const addPostFB = (contents = "") => {
 
     const _post = {
       ...initialPost,
+      layout,
       contents,
       insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
     };
@@ -168,6 +172,8 @@ const updatePostFB = (new_post = {}, post_id = null) => {
         .then((doc) => {
           dispatch(updatePost({ ...new_post }, post_id));
           history.replace("/");
+          dispatch(imageActions.setPreview(null));
+          console.log("같다");
         });
     } else {
       const _upload = storage
@@ -192,7 +198,9 @@ const updatePostFB = (new_post = {}, post_id = null) => {
                   dispatch(
                     updatePost(post_id, { ...new_post, image_url: url })
                   );
+                  console.log("다르다");
                   history.replace("/");
+                  dispatch(imageActions.setPreview(null));
                 })
                 .catch((err) => {
                   window.alert("앗! 포스터 작성에 문제가 있어요!");

@@ -16,6 +16,7 @@ const WritePost = (props) => {
   const post_id = props.match.params.id;
   const is_edit = post_id ? true : false;
   const post = post_list.find((p) => p.id === post_id);
+  const [layout, setLayout] = useState(post ? post.layout : "");
   const [input, setInput] = useState(post ? post.contents : "");
 
   useEffect(() => {
@@ -37,11 +38,18 @@ const WritePost = (props) => {
   }, []);
 
   const addPost = () => {
-    dispatch(postActions.addPostFB(input));
+    dispatch(postActions.addPostFB(input, layout));
   };
 
   const editPost = () => {
-    dispatch(postActions.updatePostFB({ contents: input }, post_id));
+    dispatch(postActions.updatePostFB({ contents: input, layout }, post_id));
+  };
+
+  const is_checked = (e) => {
+    if (e.target.checked) {
+      console.log(e.target.value);
+      setLayout(e.target.value);
+    }
   };
 
   if (!is_login) {
@@ -68,18 +76,78 @@ const WritePost = (props) => {
         <Title>{is_edit ? "게시물 수정" : "게시글 작성"}</Title>
         <Upload />
         <Text bold size="20px" margin="10px 0">
-          미리보기
+          레이아웃 고르기
         </Text>
       </Grid>
 
-      <Image
-        shape="big_square"
-        src={
-          preview
-            ? preview
-            : "https://user-images.githubusercontent.com/75834421/124501682-fb25fd00-ddfc-11eb-93ec-c0330dff399b.jpg"
-        }
-      />
+      <Grid>
+        <input
+          type="radio"
+          name="layout"
+          value="right"
+          id="right"
+          onChange={is_checked}
+          checked={is_edit && layout === "right" ? true : null}
+        />
+        <label htmlFor="right">오른쪽에 이미지 왼쪽에 텍스트</label>
+      </Grid>
+      <Grid is_flex>
+        <Text>{input}</Text>
+        <Image
+          half
+          shape="big_square"
+          src={
+            preview
+              ? preview
+              : "https://user-images.githubusercontent.com/75834421/124501682-fb25fd00-ddfc-11eb-93ec-c0330dff399b.jpg"
+          }
+        />
+      </Grid>
+      <Grid>
+        <input
+          type="radio"
+          name="layout"
+          value="left"
+          id="left"
+          onChange={is_checked}
+          checked={is_edit && layout === "left" ? true : null}
+        />
+        <label htmlFor="left">왼쪽에 이미지 오른쪽에 텍스트</label>
+      </Grid>
+      <Grid is_flex>
+        <Image
+          half
+          shape="big_square"
+          src={
+            preview
+              ? preview
+              : "https://user-images.githubusercontent.com/75834421/124501682-fb25fd00-ddfc-11eb-93ec-c0330dff399b.jpg"
+          }
+        />
+        <Text>{input}</Text>
+      </Grid>
+      <Grid>
+        <input
+          type="radio"
+          name="layout"
+          value="bottom"
+          id="bottom"
+          onChange={is_checked}
+          checked={is_edit && layout === "bottom" ? true : null}
+        />
+        <label htmlFor="bottom">하단에 이미지 상단에 텍스트</label>
+      </Grid>
+      <Grid>
+        <Text>{input}</Text>
+        <Image
+          shape="big_square"
+          src={
+            preview
+              ? preview
+              : "https://user-images.githubusercontent.com/75834421/124501682-fb25fd00-ddfc-11eb-93ec-c0330dff399b.jpg"
+          }
+        />
+      </Grid>
 
       <Grid padding="16px">
         <Input
