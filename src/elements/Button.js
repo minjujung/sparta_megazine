@@ -51,7 +51,7 @@ const Btn = styled.button`
   cursor: pointer;
   box-sizing: border-box;
   width: ${(props) => props.width};
-  height: 35px;
+  height: 40px;
   background-color: ${(props) => (props.disabled ? "#1b9cfc8c" : "#1B9CFC")};
   border: none;
   border-radius: 3px;

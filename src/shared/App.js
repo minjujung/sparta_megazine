@@ -15,6 +15,7 @@ import Header from "../components/Header";
 import WritePost from "../pages/WritePost";
 import { Grid } from "../elements";
 import PostDetail from "../pages/PostDetail";
+import Caution from "../pages/Caution";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/write" component={WritePost} />
           <Route exact path="/write/:id" component={WritePost} />
           <Route exact path="/post/:id" component={PostDetail} />
+          <Route exact path="/caution" component={Caution} />
         </ConnectedRouter>
       </Grid>
     </div>

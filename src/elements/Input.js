@@ -74,6 +74,7 @@ Input.defaultProps = {
 
 const InputField = styled.input`
   width: 100%;
+  min-width: 300px;
   box-sizing: border-box;
   padding: 10px;
   border: 2px solid #25ccf7;

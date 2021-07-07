@@ -18,7 +18,7 @@ const PostList = (props) => {
   const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
-    if (list.length === 0) {
+    if (list.length < 2) {
       dispatch(postActions.loadPostFB());
     }
   }, []);

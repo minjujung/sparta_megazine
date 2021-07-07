@@ -18,7 +18,7 @@ const loadPost = createAction(LOAD_POST, (post_list, paging) => ({
   post_list,
   paging,
 }));
-const addPost = createAction(ADD_POST, (post, layout) => ({ post, layout }));
+const addPost = createAction(ADD_POST, (post) => ({ post }));
 const updatePost = createAction(UPDATE_POST, (post_id, new_post) => ({
   post_id,
   new_post,
@@ -27,10 +27,25 @@ const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
 //initialState
-const initialPost = {
+const initialState = {
   list: [],
   paging: { start: null, next: null, size: 3 },
   is_loading: false,
+};
+
+const initialPost = {
+  // id: 0,
+  // user_info: {
+  //   user_name: "minju",
+  //   user_profile: `${moomin}`,
+  // },
+  image_url:
+    "https://user-images.githubusercontent.com/75834421/124341016-6486ef80-dbf4-11eb-9a7a-bbfbb429810d.jpg",
+  contents: "",
+  comment_cnt: 0,
+  like_cnt: 0,
+  layout: "bottom",
+  insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
 };
 
 //middleware
@@ -124,9 +139,6 @@ const loadOnePostFB = (id) => {
       .doc(id)
       .get()
       .then((doc) => {
-        console.log(doc);
-        console.log(doc.data());
-
         let _post = doc.data();
         // firebase에서 가져온걸 바로 쓸려면 우리가 원하는 형태로 바꿔주고 사용
         let post = Object.keys(_post).reduce(
@@ -243,7 +255,7 @@ const updatePostFB = (post_id = null, new_post = {}) => {
               .then((doc) => {
                 dispatch(updatePost(post_id, { ...new_post, image_url: url }));
                 history.replace("/");
-                // dispatch(imageActions.setPreview(null));
+                dispatch(imageActions.setPreview(null));
               });
           })
           .catch((err) => {
@@ -313,7 +325,7 @@ export default handleActions(
         draft.is_loading = action.payload.is_loading;
       }),
   },
-  initialPost
+  initialState
 );
 
 const actionCreators = {

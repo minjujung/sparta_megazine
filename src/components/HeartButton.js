@@ -24,21 +24,7 @@ const HeartButton = (props) => {
   const [toggle, setToggle] = useState(false);
   const updateHeart = () => {
     if (!user_info) {
-      return (
-        <Grid margin="100px 0px" padding="16px" center>
-          <Text size="32px" bold>
-            앗 잠깐!
-          </Text>
-          <Text size="16px">로그인 후에만 글을 쓸 수 있어요!</Text>
-          <Button
-            _onClick={() => {
-              history.replace("/login");
-            }}
-          >
-            로그인 하러 가기!
-          </Button>
-        </Grid>
-      );
+      return history.replace("/caution");
     } else if (!like_list[post_id]?.includes(user_info.uid)) {
       dispatch(likeActions.addLikeFB(post_id));
     } else if (like_list[post_id]?.includes(user_info.uid)) {
@@ -48,7 +34,7 @@ const HeartButton = (props) => {
   return (
     <>
       <Text _onClick={updateHeart}>
-        {toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        <FavoriteIcon style={toggle ? { color: "pink" } : { color: "grey" }} />
       </Text>
     </>
   );

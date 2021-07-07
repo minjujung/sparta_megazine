@@ -16,7 +16,7 @@ const WritePost = (props) => {
   const post_id = props.match.params.id;
   const is_edit = post_id ? true : false;
   const _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
-  const [layout, setLayout] = useState(_post ? _post.layout : "");
+  const [layout, setLayout] = useState(_post ? _post.layout : "bottom");
   const [input, setInput] = useState(_post ? _post.contents : "");
 
   useEffect(() => {
@@ -86,7 +86,6 @@ const WritePost = (props) => {
           value="right"
           id="right"
           onChange={is_checked}
-          checked={is_edit && layout === "right"}
         />
         <label htmlFor="right">오른쪽에 이미지 왼쪽에 텍스트</label>
       </Grid>
@@ -109,7 +108,6 @@ const WritePost = (props) => {
           value="left"
           id="left"
           onChange={is_checked}
-          checked={is_edit && layout === "left"}
         />
         <label htmlFor="left">왼쪽에 이미지 오른쪽에 텍스트</label>
       </Grid>
@@ -132,7 +130,6 @@ const WritePost = (props) => {
           value="bottom"
           id="bottom"
           onChange={is_checked}
-          checked={is_edit && layout === "bottom"}
         />
         <label htmlFor="bottom">하단에 이미지 상단에 텍스트</label>
       </Grid>

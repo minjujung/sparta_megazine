@@ -5,6 +5,9 @@ import Post from "../components/Post";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import CommentWrite from "../components/CommentWrite";
+import Permit from "../shared/Permit";
+import CommentList from "../components/CommentList";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -40,6 +43,10 @@ const PostDetail = (props) => {
           ) : null}
         </>
       )}
+      <Permit>
+        <CommentWrite post_id={id} />
+      </Permit>
+      <CommentList post_id={id} />
     </>
   );
 };

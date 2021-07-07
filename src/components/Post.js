@@ -9,8 +9,16 @@ import HeartButton from "./HeartButton";
 const Post = (props) => {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.like.list);
-  const { user_info, image_url, contents, like_cnt, insert_dt, id, layout } =
-    props;
+  const {
+    user_info,
+    image_url,
+    contents,
+    like_cnt,
+    insert_dt,
+    id,
+    layout,
+    comment_cnt,
+  } = props;
 
   useEffect(() => {
     dispatch(likeActions.getLikeFB(id));
@@ -54,6 +62,7 @@ const Post = (props) => {
           </Grid>
           <Grid is_flex padding="5px">
             <Text>좋아요 {like_cnt}개</Text>
+            <Text>댓글 {comment_cnt}개</Text>
             <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
@@ -71,6 +80,7 @@ const Post = (props) => {
           </Grid>
           <Grid is_flex padding="5px">
             <Text>좋아요 {like_cnt}개</Text>
+            <Text>댓글 {comment_cnt}개</Text>
             <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
@@ -87,6 +97,7 @@ const Post = (props) => {
           </Grid>
           <Grid is_flex padding="5px">
             <Text>좋아요 {like_cnt}개</Text>
+            <Text>댓글 {comment_cnt}개</Text>
             <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
@@ -105,6 +116,7 @@ Post.defaultProps = {
     "https://user-images.githubusercontent.com/75834421/124404954-0be05f80-dd78-11eb-8048-0a5517211d3e.jpg",
   contents: "안녕! 무민!",
   like_cnt: 0,
+  comment_cnt: 0,
   insert_dt: "2021-06-30 10:00:00",
 };
 
