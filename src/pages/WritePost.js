@@ -15,9 +15,9 @@ const WritePost = (props) => {
 
   const post_id = props.match.params.id;
   const is_edit = post_id ? true : false;
-  const post = post_list.find((p) => p.id === post_id);
-  const [layout, setLayout] = useState(post ? post.layout : "");
-  const [input, setInput] = useState(post ? post.contents : "");
+  const _post = is_edit ? post_list.find((p) => p.id === post_id) : null;
+  const [layout, setLayout] = useState(_post ? _post.layout : "");
+  const [input, setInput] = useState(_post ? _post.contents : "");
 
   useEffect(() => {
     //수정 페이지에서 새로고침을 하면 rerendering이 되면서 reducer의
@@ -25,7 +25,7 @@ const WritePost = (props) => {
     // post는 없는 경우가 되므로 그때는 그냥 강제뒤로가기! 그러고 나서 끝나야 되므로
     // return! (여기서 return 안하면 밑에 것도 수행되면서 is_edit은 있고 post는 없는데
     //image_url 찾는다면서 오류발생!)
-    if (is_edit && !post) {
+    if (is_edit && !_post) {
       console.log("포스트 정보가 없어요! ㅜㅜ");
       history.goBack();
 
@@ -33,7 +33,7 @@ const WritePost = (props) => {
     }
 
     if (is_edit) {
-      dispatch(imageActions.setPreview(post.image_url));
+      dispatch(imageActions.setPreview(_post.image_url));
     }
   }, []);
 
@@ -42,12 +42,11 @@ const WritePost = (props) => {
   };
 
   const editPost = () => {
-    dispatch(postActions.updatePostFB({ contents: input, layout }, post_id));
+    dispatch(postActions.updatePostFB(post_id, { contents: input, layout }));
   };
 
   const is_checked = (e) => {
     if (e.target.checked) {
-      console.log(e.target.value);
       setLayout(e.target.value);
     }
   };
@@ -87,7 +86,7 @@ const WritePost = (props) => {
           value="right"
           id="right"
           onChange={is_checked}
-          checked={is_edit && layout === "right" ? true : null}
+          checked={is_edit && layout === "right"}
         />
         <label htmlFor="right">오른쪽에 이미지 왼쪽에 텍스트</label>
       </Grid>
@@ -110,7 +109,7 @@ const WritePost = (props) => {
           value="left"
           id="left"
           onChange={is_checked}
-          checked={is_edit && layout === "left" ? true : null}
+          checked={is_edit && layout === "left"}
         />
         <label htmlFor="left">왼쪽에 이미지 오른쪽에 텍스트</label>
       </Grid>
@@ -133,7 +132,7 @@ const WritePost = (props) => {
           value="bottom"
           id="bottom"
           onChange={is_checked}
-          checked={is_edit && layout === "bottom" ? true : null}
+          checked={is_edit && layout === "bottom"}
         />
         <label htmlFor="bottom">하단에 이미지 상단에 텍스트</label>
       </Grid>

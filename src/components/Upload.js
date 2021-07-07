@@ -12,7 +12,7 @@ const Upload = (props) => {
 
   const selectFile = (e) => {
     const reader = new FileReader();
-    const file = e.target.files[0];
+    const file = fileInput.current.files[0];
 
     // 파일 내용을 읽어옵니다.
     reader.readAsDataURL(file);
