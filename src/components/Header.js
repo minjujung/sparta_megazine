@@ -30,6 +30,7 @@ const Header = (props) => {
           <Button
             _onClick={() => {
               dispatch(userActions.logoutFB());
+              window.location.reload();
             }}
           >
             로그아웃

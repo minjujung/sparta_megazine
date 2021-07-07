@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Image, Text, Button } from "../elements";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as likeActions } from "../redux/modules/like";
+import HeartButton from "./HeartButton";
 
 const Post = (props) => {
   const dispatch = useDispatch();
@@ -13,12 +12,9 @@ const Post = (props) => {
   const { user_info, image_url, contents, like_cnt, insert_dt, id, layout } =
     props;
 
-  const [toggle, setToggle] = useState(false);
-
-  // useEffect(() => {
-  //   dispatch(likeActions.getLikeFB(id));
-  //   console.log(list);
-  // }, []);
+  useEffect(() => {
+    dispatch(likeActions.getLikeFB(id));
+  }, []);
   return (
     <>
       <Grid padding="16px">
@@ -58,14 +54,7 @@ const Post = (props) => {
           </Grid>
           <Grid is_flex padding="5px">
             <Text>좋아요 {like_cnt}개</Text>
-            <Text
-              _onClick={() => {
-                // dispatch(likeActions.addLikeFB(id));
-                setToggle(!toggle);
-              }}
-            >
-              {toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </Text>
+            <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
       )}
@@ -82,35 +71,23 @@ const Post = (props) => {
           </Grid>
           <Grid is_flex padding="5px">
             <Text>좋아요 {like_cnt}개</Text>
-            <Text
-              _onClick={() => {
-                // dispatch(likeActions.addLikeFB(id));
-                setToggle(!toggle);
-              }}
-            >
-              {toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </Text>
+            <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
       )}
       {layout === "bottom" && (
-        <Grid
-          _onClick={() => {
-            history.push(`/post/${id}`);
-          }}
-        >
-          <Text margin="0">{contents}</Text>
-          <Image shape="big_square" src={image_url} />
+        <Grid>
+          <Grid
+            _onClick={() => {
+              history.push(`/post/${id}`);
+            }}
+          >
+            <Text margin="0">{contents}</Text>
+            <Image shape="big_square" src={image_url} />
+          </Grid>
           <Grid is_flex padding="5px">
             <Text>좋아요 {like_cnt}개</Text>
-            <Text
-              _onClick={() => {
-                // dispatch(likeActions.addLikeFB(id));
-                setToggle(!toggle);
-              }}
-            >
-              {toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </Text>
+            <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
       )}

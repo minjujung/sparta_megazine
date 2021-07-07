@@ -9,6 +9,7 @@ import { Grid, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as likeActions } from "../redux/modules/like";
 import InfinityScroll from "../shared/InfinityScroll";
 
 const PostList = (props) => {
