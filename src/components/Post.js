@@ -27,7 +27,7 @@ const Post = (props) => {
     <>
       <Grid padding="16px">
         <Grid is_flex>
-          <Grid width="30%" is_flex>
+          <Grid width="100px" is_flex>
             <Image shape="circle" size="40" src={props.src} />
             <Text bold>{user_info.user_name}</Text>
           </Grid>
@@ -57,12 +57,16 @@ const Post = (props) => {
               history.push(`/post/${id}`);
             }}
           >
-            <Text>{contents}</Text>
+            <Text margin="10px" width="80%" center size="15px">
+              {contents}
+            </Text>
             <Image half shape="big_square" src={image_url} />
           </Grid>
           <Grid is_flex padding="5px">
-            <Text>좋아요 {like_cnt}개</Text>
-            <Text>댓글 {comment_cnt}개</Text>
+            <Grid is_flex padding="5px" width="150px">
+              <Text>좋아요 {like_cnt}개</Text>
+              <Text>댓글 {comment_cnt}개</Text>
+            </Grid>
             <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
@@ -76,11 +80,15 @@ const Post = (props) => {
             }}
           >
             <Image half shape="big_square" src={image_url} />
-            <Text>{contents}</Text>
+            <Text margin="10px" width="80%" center>
+              {contents}
+            </Text>
           </Grid>
           <Grid is_flex padding="5px">
-            <Text>좋아요 {like_cnt}개</Text>
-            <Text>댓글 {comment_cnt}개</Text>
+            <Grid is_flex padding="5px" width="150px">
+              <Text>좋아요 {like_cnt}개</Text>
+              <Text>댓글 {comment_cnt}개</Text>
+            </Grid>
             <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>
@@ -92,12 +100,14 @@ const Post = (props) => {
               history.push(`/post/${id}`);
             }}
           >
-            <Text margin="0">{contents}</Text>
+            <Text margin="10px">{contents}</Text>
             <Image shape="big_square" src={image_url} />
           </Grid>
           <Grid is_flex padding="5px">
-            <Text>좋아요 {like_cnt}개</Text>
-            <Text>댓글 {comment_cnt}개</Text>
+            <Grid is_flex padding="5px" width="150px">
+              <Text>좋아요 {like_cnt}개</Text>
+              <Text>댓글 {comment_cnt}개</Text>
+            </Grid>
             <HeartButton post_id={id}></HeartButton>
           </Grid>
         </Grid>

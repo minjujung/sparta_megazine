@@ -23,7 +23,7 @@ const PostList = (props) => {
     }
   }, []);
   return (
-    <Grid relative>
+    <Grid relative is_main>
       <InfinityScroll
         callNext={() => {
           dispatch(postActions.loadPostFB(paging.next));

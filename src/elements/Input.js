@@ -13,6 +13,7 @@ const Input = (props) => {
     _onSubmit,
     textarea,
     margin,
+    width,
   } = props;
 
   if (is_submit) {
@@ -53,7 +54,7 @@ const Input = (props) => {
           value={value}
           placeholder={placeholder}
           onChange={_onChange}
-          style={{ margin }}
+          style={{ margin, width }}
         />
       </label>
     );
@@ -70,11 +71,12 @@ Input.defaultProps = {
   _onChange: () => {},
   _onSubmit: () => {},
   margin: false,
+  width: false,
 };
 
 const InputField = styled.input`
-  width: 100%;
-  min-width: 300px;
+  ${(props) => (props.width ? `width: ${props.width};` : `width: 100%;`)}
+  min-width: 230px;
   box-sizing: border-box;
   padding: 10px;
   border: 2px solid #25ccf7;
@@ -84,6 +86,10 @@ const InputField = styled.input`
   &:focus {
     outline: none;
     border: 2px solid #1b9cfc;
+  }
+
+  @media (max-width: 280px) {
+    min-width: 150px;
   }
 `;
 

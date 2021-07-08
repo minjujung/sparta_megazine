@@ -2,8 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 const Grid = (props) => {
-  const { children, is_flex, width, padding, margin, bg, relative, _onClick } =
-    props;
+  const {
+    children,
+    is_flex,
+    width,
+    padding,
+    margin,
+    bg,
+    relative,
+    _onClick,
+    is_main,
+  } = props;
 
   const styles = {
     is_flex,
@@ -12,6 +21,7 @@ const Grid = (props) => {
     padding,
     bg,
     relative,
+    is_main,
   };
   return (
     <GridContainer {...styles} onClick={_onClick}>

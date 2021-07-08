@@ -74,12 +74,11 @@ const WritePost = (props) => {
       <Grid padding="0 16px">
         <Title>{is_edit ? "게시물 수정" : "게시글 작성"}</Title>
         <Upload />
-        <Text bold size="20px" margin="10px 0">
+        <Text bold size="20px" margin="20px 0">
           레이아웃 고르기
         </Text>
       </Grid>
-
-      <Grid>
+      <Grid padding="16px">
         <input
           type="radio"
           name="layout"
@@ -87,10 +86,20 @@ const WritePost = (props) => {
           id="right"
           onChange={is_checked}
         />
-        <label htmlFor="right">오른쪽에 이미지 왼쪽에 텍스트</label>
+        <label htmlFor="right">
+          <strong
+            style={
+              layout === "right" ? { color: "#1B9CFC", margin: "10px" } : null
+            }
+          >
+            오른쪽에 이미지 왼쪽에 텍스트
+          </strong>
+        </label>
       </Grid>
       <Grid is_flex>
-        <Text>{input}</Text>
+        <Text width="80%" margin="10px" center>
+          {input}
+        </Text>
         <Image
           half
           shape="big_square"
@@ -101,7 +110,7 @@ const WritePost = (props) => {
           }
         />
       </Grid>
-      <Grid>
+      <Grid padding="16px">
         <input
           type="radio"
           name="layout"
@@ -109,7 +118,15 @@ const WritePost = (props) => {
           id="left"
           onChange={is_checked}
         />
-        <label htmlFor="left">왼쪽에 이미지 오른쪽에 텍스트</label>
+        <label htmlFor="left">
+          <strong
+            style={
+              layout === "left" ? { color: "#1B9CFC", margin: "10px" } : null
+            }
+          >
+            왼쪽에 이미지 오른쪽에 텍스트
+          </strong>
+        </label>
       </Grid>
       <Grid is_flex>
         <Image
@@ -121,20 +138,32 @@ const WritePost = (props) => {
               : "https://user-images.githubusercontent.com/75834421/124501682-fb25fd00-ddfc-11eb-93ec-c0330dff399b.jpg"
           }
         />
-        <Text>{input}</Text>
+        <Text width="80%" margin="10px" center>
+          {input}
+        </Text>
       </Grid>
-      <Grid>
+      <Grid padding="16px">
         <input
           type="radio"
           name="layout"
           value="bottom"
           id="bottom"
           onChange={is_checked}
+          style={{ color: "skyblue" }}
         />
-        <label htmlFor="bottom">하단에 이미지 상단에 텍스트</label>
+        <label htmlFor="bottom">
+          {" "}
+          <strong
+            style={
+              layout === "bottom" ? { color: "#1B9CFC", margin: "10px" } : null
+            }
+          >
+            하단에 이미지 상단에 텍스트
+          </strong>
+        </label>
       </Grid>
       <Grid>
-        <Text>{input}</Text>
+        <Text margin="10px">{input}</Text>
         <Image
           shape="big_square"
           src={

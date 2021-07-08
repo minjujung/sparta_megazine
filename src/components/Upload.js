@@ -29,14 +29,14 @@ const Upload = (props) => {
     <>
       <Grid is_flex>
         <Input
-          width="80%"
+          width="100%"
           type="text"
           placeholder="사진을 선택해주세용!"
           value={fileName}
           margin="0"
           disabled
         />
-        <Button width="20%">
+        <Button width="50px">
           <label htmlFor="file">파일 찾기</label>
         </Button>
         <input

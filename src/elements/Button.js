@@ -48,6 +48,7 @@ Button.defaultProps = {
 };
 
 const Btn = styled.button`
+  font-family: "Sunflower", sans-serif;
   cursor: pointer;
   box-sizing: border-box;
   width: ${(props) => props.width};
@@ -56,9 +57,14 @@ const Btn = styled.button`
   border: none;
   border-radius: 3px;
   color: white;
+
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.font_size ? `font-size: ${props.font_size};` : "")};
+
+  @media (max-width: 280px) {
+    font-size: 11px;
+  }
 `;
 
 const PlusBtn = styled.button`

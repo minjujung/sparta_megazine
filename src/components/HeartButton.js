@@ -39,10 +39,18 @@ const HeartButton = (props) => {
   return (
     <>
       <Text _onClick={updateHeart}>
-        <FavoriteIcon style={toggle ? { color: "pink" } : { color: "grey" }} />
+        <FavoriteIcon
+          style={
+            toggle ? { color: "pink", ...styles } : { color: "grey", ...styles }
+          }
+        />
       </Text>
     </>
   );
+};
+
+const styles = {
+  padding: "10px",
 };
 
 export default HeartButton;
