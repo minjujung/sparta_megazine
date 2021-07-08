@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { firestore } from "../../shared/firebase";
+import { firestore, realtime } from "../../shared/firebase";
 import moment from "moment";
 
 import firebase from "firebase/app";
@@ -61,6 +61,7 @@ const addLikeFB = (post_id) => {
     const user_info = getState().user.user;
 
     let like = {
+      user_name: user_info.user_name,
       post_id: post_id,
       user_id: user_info.uid,
       insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),

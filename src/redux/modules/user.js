@@ -26,7 +26,6 @@ const signUpFB = (id, pwd, user_name) => {
     auth
       .createUserWithEmailAndPassword(id, pwd)
       .then((user) => {
-        console.log(user);
         auth.currentUser
           .updateProfile({
             displayName: user_name,
@@ -40,8 +39,8 @@ const signUpFB = (id, pwd, user_name) => {
                 uid: user.user.uid,
               })
             );
-            window.alert(`환영해요! ${user_name}님 :)`);
-            history.push("/");
+            window.alert(`환영해요! ${user_name}님 :)! 로그인도 부탁드려요!`);
+            history.replace("/login");
           })
           .catch((error) => {
             console.log(error);

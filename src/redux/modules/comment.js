@@ -61,6 +61,28 @@ const addCommentFB = (post_id, comment) => {
                 comment_cnt: parseInt(post.comment_cnt) + 1,
               })
             );
+
+            const _noti_item = realtime
+              .ref(`noti/${post.user_info.user_id}/list`)
+              .push();
+            _noti_item.set(
+              {
+                post_id: post.id,
+                user_name: new_comment.user_name,
+                image_url: post.image_url,
+                insert_dt: new_comment.insert_dt,
+              },
+              (err) => {
+                if (err) {
+                  console.log("알림 저장에 실패했어요 8ㅛ8");
+                } else {
+                  const notiDB = realtime.ref(`noti/${post.user_info.user_id}`);
+                  if (comment.user_id !== post.user_info.user_id) {
+                    notiDB.update({ read: false });
+                  }
+                }
+              }
+            );
           }
         });
     });

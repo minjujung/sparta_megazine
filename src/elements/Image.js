@@ -17,6 +17,10 @@ const Image = (props) => {
   if (shape === "big_square") {
     return <BigSquareImage {...styles}></BigSquareImage>;
   }
+
+  if (shape === "small_square") {
+    return <SmallSquareImage {...styles}></SmallSquareImage>;
+  }
 };
 
 Image.defaultProps = {
@@ -42,6 +46,16 @@ const BigSquareImage = styled.img`
   ${(props) => (props.half ? `flex-basis: 50%;` : "")}
   min-width: 250px;
   background-image: url(${(props) => props.src});
+  background-size: cover;
+`;
+
+const SmallSquareImage = styled.div`
+  --size: ${(props) => props.size}px;
+  width: var(--size);
+  min-width: var(--size);
+  height: var(--size);
+  min-height: var(--size);
+  background-image: url("${(props) => props.src}");
   background-size: cover;
 `;
 
